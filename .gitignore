@@ -1,0 +1,58 @@
+# ========== Unity ==========
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+
+# ========== Visual Studio / Rider ==========
+.vs/
+.vscode/
+.idea/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+
+# ========== Unity Cache ==========
+/Library/PackageCache/
+
+# ========== OS Files ==========
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ========== Crash Reports ==========
+sysinfo.txt
+
+# ========== Builds ==========
+*.apk
+*.aab
+*.app
+*.exe
+*.x86
+*.x86_64
+*.zip
+
+# ========== Addressables ==========
+/Assets/AddressableAssetsData/*/*.bin*
+
+# ========== IL2CPP ==========
+/Il2cppBuildCache/
+
+# ========== JetBrains Rider ==========
+*.sln.iml
+
+# ========== Meta ==========
+*.orig
