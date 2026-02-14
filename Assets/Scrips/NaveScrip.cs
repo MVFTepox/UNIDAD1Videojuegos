@@ -31,7 +31,7 @@ public class NaveScrip : MonoBehaviour
         tipo_arma = 0;
         maincamera = Camera.main;
         angulo_incial = 270;
-        num_vidas = 3;
+        num_vidas = 5;
         time_powerup = Time.time;
 
     }
@@ -162,7 +162,7 @@ public class NaveScrip : MonoBehaviour
             {
                 vida.SetActive(true);
             }
-            num_vidas = 3;
+            num_vidas = 5;
             Destroy(collision.gameObject);
         }
 
