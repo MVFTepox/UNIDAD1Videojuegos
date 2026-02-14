@@ -15,8 +15,8 @@ public class MeteoroScript : MonoBehaviour
     {
 
         float scaleX = Random.Range(0.2f, 1f);
-        meteoro_velocity.y = -0.04f;
-
+        meteoro_velocity.y = Random.Range(-0.02f, 0.02f);
+        transform.localScale = new Vector3(scaleX, scaleX,scaleX );
         sound = GameObject.Find("Sounds").GetComponent<SoundsScrip>();
     }
 
