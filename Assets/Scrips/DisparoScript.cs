@@ -9,13 +9,8 @@ public class DisparoScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
         ///Siempre tiene que sumar 1 
-        
-      
-
         forceX = PlayerPrefs.GetFloat("fuerzaX");
-        
         forceY = PlayerPrefs.GetFloat("fuerzaY");
         disparo_Velocity.y = forceY;
         disparo_Velocity.x = forceX;
@@ -24,7 +19,6 @@ public class DisparoScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     void OnBecameInvisible()

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class EnemyScrip : MonoBehaviour
+public class ENEMI2Scrpt : MonoBehaviour
 {
     // Velocidad del enemigo (movimiento en X y Y)
     Vector2 Velocity;
@@ -70,7 +70,7 @@ public class EnemyScrip : MonoBehaviour
         hits = 0; // Inicializa golpes
 
         // Tiempo inicial para disparar
-        next_spawn_bullet_time = Time.time + Random.Range(1f, 2f);
+        next_spawn_bullet_time = Time.time + Random.Range(0.6f, 1f);
 
         // Busca el objeto "Sounds" en la escena
         sound = GameObject.Find("Sounds").GetComponent<SoundsScrip>();
@@ -82,26 +82,11 @@ public class EnemyScrip : MonoBehaviour
         if (Time.time > next_spawn_bullet_time)
         {
             Instantiate(Bullet, transform.position, transform.rotation);
-            next_spawn_bullet_time = Time.time + Random.Range(1f, 3f);
-            
+            next_spawn_bullet_time = Time.time + Random.Range(1f, 2f);
         }
 
-        // Cambio de dirección horizontal cada cierto tiempo
-        if (Time.time > next_mov_time)
-        {
-            if (par_impar % 2 == 0)
-            {
-                Velocity.x = 0.1f; // Derecha
-            }
-            else
-            {
-                Velocity.x = -0.1f; // Izquierda
-            }
 
-            par_impar++; // Alterna par/impar
 
-            next_mov_time = Time.time + Random.Range(1f, 5f);
-        }
     }
 
     void FixedUpdate()

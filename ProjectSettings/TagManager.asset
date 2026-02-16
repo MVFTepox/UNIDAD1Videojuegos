@@ -10,6 +10,8 @@ TagManager:
   - Recover
   - Sounds
   - DisparoE
+  - DisparoE2
+  - POWERUP2
   layers:
   - Default
   - TransparentFX

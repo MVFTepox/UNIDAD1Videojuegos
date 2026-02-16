@@ -6,6 +6,15 @@ public class SoundsScrip : MonoBehaviour
     public List<AudioClip> audioList;
     public AudioSource audio_disparo;
     public AudioSource audio_meteoro;
+    public AudioSource audio_CargaSismica;
+
+    public AudioSource audio_disparo2;
+
+    public AudioSource powerUpSound;
+
+    public AudioSource recoverySound;
+
+    public AudioSource hitSound;
 
     public void PlaySonidoDisparo()
     {
@@ -17,14 +26,30 @@ public class SoundsScrip : MonoBehaviour
         audio_meteoro.PlayOneShot(audioList[1]);
     }
 
-    void Start()
+    public void PlaySonidoCargaSismica()
     {
-
+        audio_CargaSismica.PlayOneShot(audioList[2]);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlaySonidoDisparo2()
     {
-
+        audio_disparo2.PlayOneShot(audioList[3]);
     }
+
+    public void PlaySonidoPowerUp()
+    {
+        powerUpSound.PlayOneShot(audioList[4]);
+    }
+
+    public void PlaySonidoRecovery()
+    {
+        recoverySound.PlayOneShot(audioList[5]);
+    }
+
+    public void PlaySonidoHit()
+    {
+        hitSound.PlayOneShot(audioList[6]);
+    }
+
+
 }

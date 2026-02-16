@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class EnemyBulletScrip : MonoBehaviour
+public class EnemyBullet2Scrip : MonoBehaviour
 {
-
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     Vector2 bullet_Velocity;
 
     void Start()
@@ -17,13 +17,14 @@ public class EnemyBulletScrip : MonoBehaviour
         }
     }
 
-
-
     void FixedUpdate()
     {
         GetComponent<Rigidbody2D>().position += bullet_Velocity;
     }
-    void OnCollisionEnter2D(Collision2D collision)
+
+
+
+ void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Disparo" || collision.gameObject.tag == "DisparoE2")
         {

@@ -8,10 +8,13 @@ public class NaveScrip : MonoBehaviour
     Vector2 nave_position;
     public GameObject disparo;
     public GameObject disparo2;
+    public GameObject disparo3;
 
 
     public GameObject buttonNewGame;
     public GameObject RecordText;
+
+    public GameObject buttonReturnToMenu;
     public List<GameObject> vidas;
 
     float angulo_incial;
@@ -19,7 +22,6 @@ public class NaveScrip : MonoBehaviour
 
     int tipo_arma;
     float time_powerup;
-
 
     int num_vidas;
 
@@ -31,7 +33,7 @@ public class NaveScrip : MonoBehaviour
         tipo_arma = 0;
         maincamera = Camera.main;
         angulo_incial = 270;
-        num_vidas = 5;
+        num_vidas = vidas.Count;
         time_powerup = Time.time;
 
     }
@@ -47,7 +49,7 @@ public class NaveScrip : MonoBehaviour
         float angleGrad = angleRad * Mathf.Rad2Deg;
 
         angleGrad += angulo_incial;
-
+        // 
         transform.rotation = Quaternion.Euler(0, 0, angleGrad);
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -79,8 +81,8 @@ public class NaveScrip : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            sound.PlaySonidoDisparo();
 
+            PlayerPrefs.SetInt("tipo_arma", tipo_arma);
             float angulo = transform.rotation.eulerAngles.z;
             if (angulo >= 0 && angulo <= 90)
             {
@@ -117,25 +119,38 @@ public class NaveScrip : MonoBehaviour
             if (tipo_arma == 0)
             {
                 Instantiate(disparo, transform.position, transform.rotation);
+                sound.PlaySonidoDisparo();
+
             }
             else if (tipo_arma == 1)
             {
                 Instantiate(disparo2, transform.position, transform.rotation);
+                sound.PlaySonidoDisparo2();
+
+            }
+            else if (tipo_arma == 2)
+            {
+                Instantiate(disparo3, transform.position, transform.rotation);
+                sound.PlaySonidoCargaSismica();
+
             }
 
-            if (Time.time > time_powerup)
+            // Control del tiempo del powerup
+            if (tipo_arma != 0 && Time.time > time_powerup)
             {
                 tipo_arma = 0;
             }
+
 
         }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "METEORO"|| collision.gameObject.tag == "DisparoE")
+        if (collision.gameObject.tag == "METEORO" || collision.gameObject.tag == "DisparoE" || collision.gameObject.tag == "naveEnemiga")
         {
             num_vidas -= 1;
+            sound.PlaySonidoHit();
             vidas[num_vidas].SetActive(false);
             Destroy(collision.gameObject);
             tipo_arma = 0;
@@ -145,6 +160,7 @@ public class NaveScrip : MonoBehaviour
                 Destroy(gameObject);
                 buttonNewGame.SetActive(true);
                 RecordText.SetActive(true);
+                buttonReturnToMenu.SetActive(true);
             }
 
         }
@@ -154,6 +170,17 @@ public class NaveScrip : MonoBehaviour
             Destroy(collision.gameObject);
             tipo_arma = 1;
             time_powerup = Time.time + 5f;
+            PlayerPrefs.SetInt("tipo_arma", tipo_arma);
+            sound.PlaySonidoPowerUp();
+        }
+
+        if (collision.gameObject.tag == "POWERUP2")
+        {
+            Destroy(collision.gameObject);
+            tipo_arma = 2;
+            time_powerup = Time.time + 3f;
+            PlayerPrefs.SetInt("tipo_arma", tipo_arma);
+            sound.PlaySonidoPowerUp();
         }
 
         if (collision.gameObject.CompareTag("Recover"))
@@ -164,10 +191,13 @@ public class NaveScrip : MonoBehaviour
             }
             num_vidas = 5;
             Destroy(collision.gameObject);
+            sound.PlaySonidoRecovery();
         }
 
 
     }
+
+
 
     void FixedUpdate()
     {
